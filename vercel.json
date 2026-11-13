@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": "api/**"
+      }
+    },
+    {
+      "src": "api/web.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": "api/**"
+      }
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/index",
+      "dest": "api/index.py"
+    },
+    {
+      "src": "/api/web",
+      "dest": "api/web.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    }
+  ]
+}
